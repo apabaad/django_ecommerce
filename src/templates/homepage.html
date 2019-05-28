@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+
+{% block content %}
+
+ {{title}} <br>
+      {{name}}<BR>
+        <h3>WORKING</h3>
+
+        {% if request.user.is_authenticated %}
+        You are logged in.
+        {%endif%}
+
+{% endblock %}

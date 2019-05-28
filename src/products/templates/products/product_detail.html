@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<img src = "{{object.image.url}}"><br>
+			{{object.image.url}}<br>
+			{{object.title}} <br>
+			{{object.description}}><br>
+			{{object.price}}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

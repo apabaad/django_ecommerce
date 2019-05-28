@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+{% block content %}
+	<div class="row">
+		<div class="col-12 py-3">
+			Results for <b>{{ request.GET.search_query }}</b>:
+			<hr>
+		</div>
+	</div>
+
+	<div class="row">
+					{% for obj in object_list %}
+						<div class="col">
+							{% include 'products/snippets/card.html' with instance=obj %}
+						</div>   
+				{% endfor %}
+	</div>	
+{% endblock %}
