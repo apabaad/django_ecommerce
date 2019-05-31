@@ -1,5 +1,39 @@
 {% extends "base.html" %}
 
 {%block content%}
-Cart
+{% if cart.products.exists %}
+<table class="table">
+	<tr>
+		<th> Product </th>
+		<th> Price </th>
+	</td>
+	{% for product in cart.products.all %}
+	<tr>
+		<td>
+		<a href="/products/detail/{{product.id}}"> {{product.title}} </a><br>
+
+		<form method="POST" action="{% url 'cart:update' %}"> {% csrf_token %}
+		<input type="hidden" name="product_id" value="{{product.id}}"> 
+		<small> <button type ="submit" class="btn btn-link btn-sm" style="padding:0px;"> remove</button> </small>
+		</td>
+
+		<td> {{product.price}}</td>
+		{%endfor%}
+	</tr>
+	<tr>
+		<td></td>
+		<td>Your Total: {{cart.total}} </td>
+	
+</table>
+
+{% else %}
+	<div class = "py-3">Your cart is empty. </div>
+{%endif%}
+
+
+
 {%endblock%}
+
+
+
+

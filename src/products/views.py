@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import Http404
 from .models import Product
 from django.views.generic import ListView, DetailView
+from carts.models import Cart
 
 
 
@@ -18,6 +19,7 @@ class ProductListView(ListView):  				#this class based view inherits ListView w
 	Not sure: In default, it looks for query_list in template. eg: for qs in query_list
 	we can get rid of the method below if we use query_list in the template'''
 
+	#to pass context to the template
 	# def get_context_data(self, *args, **kwargs):
 	# 	context = super(ProductListView, self).get_context_data(*args, **kwargs)
 	# 	return context
@@ -36,12 +38,17 @@ class ProductListView(ListView):  				#this class based view inherits ListView w
 		
 
 class ProductDetailView(DetailView):  				
-	queryset = Product.objects.all()
+	queryset 	= Product.objects.all()
 	# template_name = "products/product_detail.html"
 
-	# def get_context_data(self, *args, **kwargs):
-	# 	context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
-	# 	return context
+	'''# to send context from cart.models. aafno model(products.model) ko context classbased 
+	# view le aafai pathauchha.'''
+	def get_context_data(self, *args, **kwargs):
+		context 	= super(ProductDetailView, self).get_context_data(*args, **kwargs)
+		request		= self.request
+		cart_obj	= Cart.objects.new_or_get(request)
+		context['cart'] = cart_obj
+		return context
 
 # def product_detail_view(request, id):
 # 	queryset = Product.objects.get(id = id)

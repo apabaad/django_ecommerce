@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 
 from django.conf.urls import url, include
 from django.contrib import admin
-from carts.views import cart_home
+
 
 #commented because we have created a decicated urls for the product app
 # from products.views import (ProductListView, 
@@ -46,8 +46,9 @@ urlpatterns = [
    
     url(r'^products/', include("products.urls")),
     url(r'^search/', include("search.urls", namespace='search')),
+    url(r'^cart/', include("carts.urls", namespace='cart'))
 
-    url(r'^cart/$', cart_home),
+    
 ]
 
 

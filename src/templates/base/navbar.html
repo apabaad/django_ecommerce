@@ -33,10 +33,14 @@
         <a class="nav-link" href="/contact">Contact</a>
       </li>
 
-
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+       <a href="/cart" class="nav-link">{{request.session.total_cart_items}} <img src="https://img.icons8.com/office/16/000000/add-shopping-cart.png"></a>
       </li>
+
+
+      <!-- <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li> -->
     </ul>
     <form class="form-inline my-2 my-lg-0" action="{% url 'search:query' %}">
       <input class="form-control mr-sm-2" type="search" name='search_query' value="{{ request.GET.search_query }}" placeholder="Search" aria-label="Search">
